@@ -10,8 +10,8 @@ export default function Navbar() {
     const token = getToken();
     const [me, setMe] = useState(null);
 
-    const navLinkClass = ({ isActive, to }) =>
-        isActive || window.location.pathname.startsWith("/")
+    const navLinkClass = ({ isActive }) =>
+        isActive
             ? "text-primary font-semibold"
             : "text-base-content/80 hover:text-primary";
 
@@ -57,7 +57,7 @@ export default function Navbar() {
                 <div className="navbar-center hidden md:flex">
                     <ul className="menu menu-horizontal gap-1">
                         <li>
-                            <NavLink className={navLinkClass} to="/">
+                            <NavLink className={navLinkClass} to="/" end>
                                 Home
                             </NavLink>
                         </li>
