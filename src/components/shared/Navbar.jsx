@@ -127,7 +127,7 @@ export default function Navbar() {
                                 tabIndex={0}
                                 className="dropdown-content mt-3 p-3 shadow bg-base-100 rounded-box w-60 border border-base-300"
                             >
-                                <div className="px-2 pb-2">
+                                <div className="px-2 pb-2 wrap-break-word">
                                     <p className="font-semibold">{me.name}</p>
                                     <p className="text-sm text-base-content/70">
                                         {me.email}
