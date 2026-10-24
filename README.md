@@ -5,12 +5,9 @@ Video link: https://drive.google.com/file/d/1vjMrBxr0-7xqjxMX2EBEBw30D_av1pOu/vi
 
 A modern E-learning platform frontend built with React, Redux Toolkit, and Tailwind CSS.
 
-Admin email: admin@coursemaster.com
-Pass: admin123
-
 ## Project Name & Description
 
-**CourseMaster** is a full-featured E-learning platform where students can browse, purchase, and consume courses. The frontend provides an intuitive interface for students to enroll in courses, watch video lectures, complete assignments, and take quizzes. Administrators can manage courses, track enrollments, review assignments, and view analytics through a dedicated admin dashboard.
+**CourseMaster** is an E-learning platform where students can browse, enroll in, and consume courses. The frontend provides an interface for students to watch video lectures, complete assignments, and take quizzes. Administrators can manage courses and users, track enrollments, review assignments, and view analytics through a dedicated admin dashboard.
 
 This is the frontend application of the CourseMaster platform, built with modern React technologies and responsive design principles.
 
@@ -26,9 +23,9 @@ This is the frontend application of the CourseMaster platform, built with modern
 ## Installation
 
 1. Clone the repository
-2. Navigate to the frontend directory:
+2. Navigate to the repository root:
    ```bash
-   cd course-master-frontend
+   cd courseMaster_Frontend
    ```
 
 3. Install dependencies:
@@ -36,7 +33,7 @@ This is the frontend application of the CourseMaster platform, built with modern
    npm install
    ```
 
-4. Create a `.env` file in the root directory (see `.env.example`)
+4. Optionally create a `.env` file in the root directory. The checked-in `.env.example` uses the deployed backend URL. For local development, set `VITE_API_BASE_URL` to your local backend URL.
 
 5. Start the development server:
    ```bash
@@ -50,17 +47,14 @@ This is the frontend application of the CourseMaster platform, built with modern
 
 ## Environment Variables
 
-Create a `.env` file in the root directory with the following variables (see `.env.example` for reference):
+The frontend reads the backend base URL from `VITE_API_BASE_URL`. The checked-in `.env.example` points to the deployed backend; copy it to `.env` if you want to use that URL, or set the variable to your own backend:
 
 ```env
-# Backend API Base URL
+# Example: local backend
 VITE_API_BASE_URL=http://localhost:5000/api
-# For production, use your deployed backend URL:
-# VITE_API_BASE_URL=http://localhost:5000/api/api
 ```
 
-**Required Variables:**
-- `VITE_API_BASE_URL` - The base URL of the backend API (required)
+If the variable is omitted, the frontend defaults to `http://localhost:5000/api`.
 
 ## Project Structure
 
@@ -108,30 +102,33 @@ src/
 - Review and grade student assignments
 - Filter enrollments by course/student
 - Filter assignments by status
+- Manage users, including changing roles, banning/unbanning, and deleting accounts
+- Manage video classes
 
 ## API Integration
 
 The frontend communicates with the backend API. All API endpoints are documented in the backend README.
 
-### Key API Endpoints Used:
+The frontend uses these API areas:
 
-- **Authentication**: `/api/auth/register`, `/api/auth/login`, `/api/auth/me`
-- **Courses**: `/api/courses` (GET all, GET by ID)
-- **Enrollments**: `/api/enrollments/:courseId` (POST), `/api/enrollments/my` (GET)
-- **Assignments**: `/api/assignments/submit` (POST), `/api/assignments/my` (GET), `/api/assignments/stats` (GET)
-- **Quizzes**: `/api/quizzes/submit` (POST), `/api/quizzes/my` (GET), `/api/quizzes/stats` (GET)
-- **Admin**: `/api/admin/courses`, `/api/admin/enrollments`, `/api/admin/assignments`, `/api/admin/analytics`
+- **Authentication**: `/auth/register`, `/auth/login`, `/auth/me`
+- **Courses**: `/courses` (list and details)
+- **Enrollments**: `/enrollments` (enroll, list the current user's enrollments, and mark lessons complete)
+- **Assignments and quizzes**: submit work and retrieve the current user's submissions and stats
+- **Admin**: course, enrollment, assignment review, analytics, and user-management endpoints
 
 For complete API documentation with request/response formats, see [courseMaster_Backend/README.md](../courseMaster_Backend/README.md).
+
+Admin access is determined by the account role provided by the backend. Use an authorized admin account; this repository does not provide shared admin credentials.
 
 ## Development
 
 - Development server runs on `http://localhost:5173` (default Vite port)
 - Hot Module Replacement (HMR) is enabled
-- ESLint is configured for code quality
+- Run `npm run lint` to check code quality
+- Run `npm run build` to create a production build
 
 ## Deployment
 
 The frontend can be deployed to:
 - **Netlify**
-
